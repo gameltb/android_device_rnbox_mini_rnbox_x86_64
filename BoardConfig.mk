@@ -3,14 +3,30 @@
 # Product-specific compile-time definitions.
 #
 
-# same as x86 except HAL
-include device/generic/x86_64/BoardConfig.mk
+# x86_64 emulator specific definitions
+TARGET_CPU_ABI := x86_64
+TARGET_ARCH := x86_64
+TARGET_ARCH_VARIANT := x86_64
 
-# Build OpenGLES emulation libraries
-BUILD_EMULATOR := true
-BUILD_EMULATOR_OPENGL := true
-BUILD_EMULATOR_OPENGL_DRIVER := true
+TARGET_2ND_CPU_ABI := x86
+TARGET_2ND_ARCH := x86
+TARGET_2ND_ARCH_VARIANT := x86_64
 
-# share the same one across all mini-emulators
-BOARD_EGL_CFG := device/generic/goldfish-opengl/system/egl/egl.cfg
+TARGET_PRELINK_MODULE := false
+include build/make/target/board/BoardConfigGsiCommon.mk
+include  $(LOCAL_PATH)/BoardConfigEmuCommon.mk
 
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 576716800
+
+BOARD_SEPOLICY_DIRS += device/rnbox/goldfish/sepolicy/x86
+
+# Wifi.
+BOARD_WLAN_DEVICE           := emulator
+BOARD_HOSTAPD_DRIVER        := NL80211
+BOARD_WPA_SUPPLICANT_DRIVER := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB   := lib_driver_cmd_simulated
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_simulated
+WPA_SUPPLICANT_VERSION      := VER_0_8_X
+WIFI_DRIVER_FW_PATH_PARAM   := "/dev/null"
+WIFI_DRIVER_FW_PATH_STA     := "/dev/null"
+WIFI_DRIVER_FW_PATH_AP      := "/dev/null"

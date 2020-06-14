@@ -12,15 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-$(call inherit-product, device/generic/x86_64/mini_x86_64.mk)
+$(call inherit-product, device/rnbox/x86_64/mini_x86_64.mk)
 
-$(call inherit-product, device/generic/mini-emulator-armv7-a-neon/mini_emulator_common.mk)
+$(call inherit-product, device/rnbox/mini-emulator-armv7-a-neon/mini_emulator_common.mk)
 
-PRODUCT_NAME := mini_emulator_x86_64
-PRODUCT_DEVICE := mini-emulator-x86_64
+PRODUCT_NAME := mini_rnbox_x86_64
+PRODUCT_DEVICE := mini_rnbox_x86_64
 PRODUCT_BRAND := Android
-PRODUCT_MODEL := mini-emulator-x86_64
-
-LOCAL_KERNEL := prebuilts/qemu-kernel/x86_64/kernel-qemu
-PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel
+PRODUCT_MODEL := mini_rnbox_x86_64
